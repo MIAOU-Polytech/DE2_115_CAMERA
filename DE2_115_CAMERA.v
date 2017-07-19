@@ -675,7 +675,7 @@ RGB2GS			u9	(
 						);
 						
 sobel_h			u10 (
-							.iclk(D5M_PIXLCLK),
+							.clk(D5M_PIXLCLK),
 							.reset(DLY_RST_1),
 							.enable(1),
 							.pixvalid(sCCD_DVAL),
