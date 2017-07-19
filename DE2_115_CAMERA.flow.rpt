@@ -1,5 +1,5 @@
 Flow report for DE2_115_CAMERA
-Wed Jul 19 16:57:04 2017
+Wed Jul 19 19:59:57 2017
 Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
@@ -41,20 +41,20 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Wed Jul 19 16:56:59 2017       ;
+; Flow Status                        ; Successful - Wed Jul 19 19:59:49 2017       ;
 ; Quartus Prime Version              ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; DE2_115_CAMERA                              ;
 ; Top-level Entity Name              ; DE2_115_CAMERA                              ;
 ; Family                             ; Cyclone IV E                                ;
 ; Device                             ; EP4CE115F29C7                               ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 2,267 / 114,480 ( 2 % )                     ;
-;     Total combinational functions  ; 1,963 / 114,480 ( 2 % )                     ;
-;     Dedicated logic registers      ; 1,211 / 114,480 ( 1 % )                     ;
-; Total registers                    ; 1211                                        ;
+; Total logic elements               ; 3,033 / 114,480 ( 3 % )                     ;
+;     Total combinational functions  ; 2,745 / 114,480 ( 2 % )                     ;
+;     Dedicated logic registers      ; 1,355 / 114,480 ( 1 % )                     ;
+; Total registers                    ; 1355                                        ;
 ; Total pins                         ; 428 / 529 ( 81 % )                          ;
 ; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 76,504 / 3,981,312 ( 2 % )                  ;
+; Total memory bits                  ; 114,712 / 3,981,312 ( 3 % )                 ;
 ; Embedded Multiplier 9-bit elements ; 0 / 532 ( 0 % )                             ;
 ; Total PLLs                         ; 1 / 4 ( 25 % )                              ;
 +------------------------------------+---------------------------------------------+
@@ -65,7 +65,7 @@ agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 07/19/2017 16:55:49 ;
+; Start date & time ; 07/19/2017 19:57:58 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; DE2_115_CAMERA      ;
 +-------------------+---------------------+
@@ -76,7 +76,7 @@ agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 88491860744789.150047614908593         ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 88491860744789.150048707821533         ; --            ; --          ; --         ;
 ; ENABLE_SIGNALTAP                    ; Off                                    ; --            ; --          ; --         ;
 ; MISC_FILE                           ; v/sdram_pll.bsf                        ; --            ; --          ; --         ;
 ; MISC_FILE                           ; v/sdram_pll.ppf                        ; --            ; --          ; --         ;
@@ -93,11 +93,11 @@ agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:32     ; 1.0                     ; 1147 MB             ; 00:00:49                           ;
-; Fitter                    ; 00:00:32     ; 1.0                     ; 1380 MB             ; 00:00:42                           ;
-; Assembler                 ; 00:00:04     ; 1.0                     ; 835 MB              ; 00:00:03                           ;
-; TimeQuest Timing Analyzer ; 00:00:05     ; 1.1                     ; 931 MB              ; 00:00:05                           ;
-; Total                     ; 00:01:13     ; --                      ; --                  ; 00:01:39                           ;
+; Analysis & Synthesis      ; 00:01:05     ; 1.0                     ; 1325 MB             ; 00:01:21                           ;
+; Fitter                    ; 00:00:40     ; 1.0                     ; 1393 MB             ; 00:00:54                           ;
+; Assembler                 ; 00:00:04     ; 1.0                     ; 840 MB              ; 00:00:04                           ;
+; TimeQuest Timing Analyzer ; 00:00:08     ; 1.4                     ; 951 MB              ; 00:00:08                           ;
+; Total                     ; 00:01:57     ; --                      ; --                  ; 00:02:27                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

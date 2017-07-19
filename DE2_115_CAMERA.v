@@ -458,6 +458,9 @@ wire	[11:0]	sCCD_R;
 wire	[11:0]	sCCD_G;
 wire	[11:0]	sCCD_B;
 wire	[11:0]	sCCD_GS;
+wire	[11:0]	sCCD_GaussianFilter;
+wire	[11:0]	sCCD_MedianFilter;
+wire	[11:0]	sCCD_SharpeningFilter;
 wire	[11:0]	sCCD_Sobel;
 wire			sCCD_DVAL;
 
@@ -673,13 +676,37 @@ RGB2GS			u9	(
 							.iBlue(sCCD_B),
 							.oGreyscale(sCCD_GS)
 						);
-						
-sobel_h			u10 (
+		
+GaussianFilter		u10 (
 							.clk(D5M_PIXLCLK),
 							.reset(DLY_RST_1),
 							.enable(1),
 							.pixvalid(sCCD_DVAL),
 							.pixin(sCCD_GS),
+							.pixout(sCCD_GaussianFilter)
+						);
+MedianFilter		u11 (
+							.clk(D5M_PIXLCLK),
+							.reset(DLY_RST_1),
+							.enable(1),
+							.pixvalid(sCCD_DVAL),
+							.pixin(sCCD_GaussianFilter),
+							.pixout(sCCD_MedianFilter)
+						);
+SharpeningFilter	u12 (
+							.clk(D5M_PIXLCLK),
+							.reset(DLY_RST_1),
+							.enable(0),
+							.pixvalid(sCCD_DVAL),
+							.pixin(sCCD_MedianFilter),
+							.pixout(sCCD_SharpeningFilter)
+						);
+SobelFilter			u13 (
+							.clk(D5M_PIXLCLK),
+							.reset(DLY_RST_1),
+							.enable(1),
+							.pixvalid(sCCD_DVAL),
+							.pixin(sCCD_SharpeningFilter),
 							.pixout(sCCD_Sobel)
 						);
 

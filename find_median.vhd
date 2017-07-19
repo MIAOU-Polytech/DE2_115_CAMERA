@@ -1,0 +1,109 @@
+LIBRARY ieee; 
+USE ieee.std_logic_1164.all;
+USE ieee.numeric_std.all;
+
+ENTITY find_median IS 
+    PORT ( 
+		n1: IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		n2: IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		n3: IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		n4: IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		n5: IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		n6: IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		n7: IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		n8: IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		n9: IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		median: OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+    ); 
+END ENTITY find_median;
+
+ARCHITECTURE median_arch OF find_median IS 
+	component compare is 
+	port(
+		ai: IN STD_LOGIC_VECTOR (15 DOWNTO 0); 
+		bi: IN STD_LOGIC_VECTOR (15 DOWNTO 0); 
+		ao: OUT STD_LOGIC_VECTOR (15 DOWNTO 0); 
+		bo: OUT STD_LOGIC_VECTOR (15 DOWNTO 0) 
+	); 
+	end component ;
+	
+	SIGNAL tmp1_1: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp2_1: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp4_1: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp5_1: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp7_1: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp8_1: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	
+	SIGNAL tmp2_2: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp3_2: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp5_2: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp6_2: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp8_2: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp9_2: STD_LOGIC_VECTOR(15 DOWNTO 0);
+
+	SIGNAL tmp1_3: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp2_3: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp4_3: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp5_3: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp7_3: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp8_3: STD_LOGIC_VECTOR(15 DOWNTO 0);
+
+	SIGNAL tmp1_4: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp2_4: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp4_4: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp5_4: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp8_4: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp9_4: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	
+	SIGNAL tmp2_5: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp3_5: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp5_5: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp6_5: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp7_5: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp8_5: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	
+	SIGNAL tmp4_6: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp5_6: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	
+	SIGNAL tmp4_7: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp5_7: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	
+	SIGNAL tmp5_8: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL tmp6_8: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	
+	SIGNAL tmp5_9: STD_LOGIC_VECTOR(15 DOWNTO 0);
+BEGIN 
+
+-- inspired from http://www.ijetae.com/files/Volume2Issue8/IJETAE_0812_38.pdf
+
+comp12_1: compare PORT MAP (n1, n2, tmp1_1, tmp2_1);
+comp45_1: compare PORT MAP (n4, n5, tmp4_1, tmp5_1);
+comp78_1: compare PORT MAP (n7, n8, tmp7_1, tmp8_1);
+
+comp23_2: compare PORT MAP (tmp2_1, n3, tmp2_2, tmp3_2);
+comp56_2: compare PORT MAP (tmp5_1, n6, tmp5_2, tmp6_2);
+comp89_2: compare PORT MAP (tmp8_1, n9, tmp8_2, tmp9_2);
+
+
+comp12_3: compare PORT MAP (tmp1_1, tmp2_2, tmp1_3, tmp2_3);
+comp45_3: compare PORT MAP (tmp4_1, tmp5_2, tmp4_3, tmp5_3);
+comp78_3: compare PORT MAP (tmp7_1, tmp8_2, tmp7_3, tmp8_3);
+
+comp14_4: compare PORT MAP (tmp1_3, tmp4_3, tmp1_4, tmp2_4);
+comp25_4: compare PORT MAP (tmp2_3, tmp5_3, tmp4_4, tmp5_4);
+comp69_4: compare PORT MAP (tmp6_2, tmp9_2, tmp8_4, tmp9_4);
+
+comp23_5: compare PORT MAP (tmp2_4, tmp7_3, tmp2_5, tmp3_5);
+comp56_5: compare PORT MAP (tmp5_4, tmp8_3, tmp5_5, tmp6_5);
+comp78_5: compare PORT MAP (tmp3_2, tmp8_4, tmp7_5, tmp8_5);
+
+comp45_6: compare PORT MAP (tmp4_4, tmp5_5, tmp4_6, tmp5_6);
+
+comp45_7: compare PORT MAP (tmp3_5, tmp5_6, tmp4_7, tmp5_7);
+
+comp56_8: compare PORT MAP (tmp5_7, tmp7_5, tmp5_8, tmp6_8);
+
+comp45_9: compare PORT MAP (tmp4_7, tmp5_8, median, tmp5_9);
+
+
+END ARCHITECTURE median_arch;
