@@ -457,6 +457,8 @@ reg				rCCD_FVAL;
 wire	[11:0]	sCCD_R;
 wire	[11:0]	sCCD_G;
 wire	[11:0]	sCCD_B;
+wire	[11:0]	sCCD_GS;
+wire	[11:0]	sCCD_Sobel;
 wire			sCCD_DVAL;
 
 wire			sdram_ctrl_clk;
@@ -569,7 +571,7 @@ Sdram_Control	u7	(	//	HOST Side
 							.CLK(sdram_ctrl_clk),
 
 							//	FIFO Write Side 1
-							.WR1_DATA({1'b0,sCCD_G[11:7],sCCD_B[11:2]}),
+							.WR1_DATA({1'b0,sCCD_Sobel[11:7],sCCD_Sobel[11:2]}),
 							.WR1(sCCD_DVAL),
 							.WR1_ADDR(0),
 `ifdef VGA_640x480p60
@@ -583,7 +585,7 @@ Sdram_Control	u7	(	//	HOST Side
 							.WR1_CLK(D5M_PIXLCLK),
 
 							//	FIFO Write Side 2
-							.WR2_DATA({1'b0,sCCD_G[6:2],sCCD_R[11:2]}),
+							.WR2_DATA({1'b0,sCCD_Sobel[6:2],sCCD_Sobel[11:2]}),
 							.WR2(sCCD_DVAL),
 							.WR2_ADDR(23'h100000),
 `ifdef VGA_640x480p60
@@ -664,6 +666,21 @@ VGA_Controller		u1	(	//	Host Side
 							.iCLK(VGA_CTRL_CLK),
 							.iRST_N(DLY_RST_2),
 							.iZOOM_MODE_SW(SW[16])
+						);
+RGB2GS			u9	(
+							.iRed(sCCD_R),
+							.iGreen(sCCD_G),
+							.iBlue(sCCD_B),
+							.oGreyscale(sCCD_GS)
+						);
+						
+sobel_h			u10 (
+							.iclk(D5M_PIXLCLK),
+							.reset(DLY_RST_1),
+							.enable(1),
+							.pixvalid(sCCD_DVAL),
+							.pixin(sCCD_GS),
+							.pixout(sCCD_Sobel)
 						);
 
 endmodule
