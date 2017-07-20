@@ -52,8 +52,8 @@ ARCHITECTURE Behavior OF MedianFilter IS
 begin
 
 
-ligne1:line_buf port map (clk, reset, enable, pixvalid, tmp_pix(1), tmp_pix(2)) ; 
-ligne2:line_buf port map (clk, reset, enable, pixvalid, tmp_pix(4), tmp_pix(5)) ;
+ligne1:line_buf port map (clk, reset, '1', pixvalid, tmp_pix(1), tmp_pix(2)) ; 
+ligne2:line_buf port map (clk, reset, '1', pixvalid, tmp_pix(4), tmp_pix(5)) ;
 
 median_calc: find_median PORT MAP (tmp_pix(0), tmp_pix(1), tmp_pix(2), tmp_pix(3), tmp_pix(4), tmp_pix(5), tmp_pix(6), tmp_pix(7), "0000" & pixin, median);
 
@@ -73,7 +73,7 @@ end process ;
 
 process (clk, enable, pixvalid) begin 
 	if (enable = '1' and pixvalid = '1') then
-		tmp <= std_logic_vector(median(11 downto 0));
+		tmp <= std_logic_vector(median)(11 downto 0);
 	else
 		tmp <= pixin;
 	end if ; 

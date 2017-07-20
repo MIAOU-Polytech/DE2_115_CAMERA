@@ -21,6 +21,8 @@ ARCHITECTURE Behavior OF SobelFilter IS
 	signal tmp : STD_LOGIC_VECTOR(11 DOWNTO 0) ;
 	signal tmp2 : signed(31 DOWNTO 0) ;
 	signal tmp3 : signed(31 DOWNTO 0) ;
+	signal sobelX : signed(31 DOWNTO 0) ;
+	signal sobelY : signed(31 DOWNTO 0) ;
 
 
 	
@@ -37,8 +39,8 @@ ARCHITECTURE Behavior OF SobelFilter IS
 begin
 
 
-ligne1:line_buf port map (clk, reset, enable, pixvalid, tmp_pix(1), tmp_pix(2)) ; 
-ligne2:line_buf port map (clk, reset, enable, pixvalid, tmp_pix(4), tmp_pix(5)) ; 
+ligne1:line_buf port map (clk, reset, '1', pixvalid, tmp_pix(1), tmp_pix(2)) ; 
+ligne2:line_buf port map (clk, reset, '1', pixvalid, tmp_pix(4), tmp_pix(5)) ; 
 
 
 process (clk, reset, pixvalid) begin
@@ -57,13 +59,14 @@ end process ;
 process (clk, enable, pixvalid) begin 
 	if (enable = '1' and pixvalid = '1') then
 		-- sobel filtre
-		tmp3 <= (signed(tmp_pix(7)) + 2*signed(tmp_pix(6)) + signed(tmp_pix(5)) - signed(tmp_pix(1)) - 2*signed(tmp_pix(0)) - ("0000" & signed(pixin))) + (signed(tmp_pix(1)) + 2*signed(tmp_pix(4)) + signed(tmp_pix(7)) - ("0000" & signed(pixin)) - 2*signed(tmp_pix(2)) - signed(tmp_pix(5))) ;  
-		if (tmp3 > 4095 or tmp3 < -4095) then
-			tmp2 <= to_signed(4095, 32);
+		sobelX <= (signed(tmp_pix(1)) + 2*signed(tmp_pix(4)) + signed(tmp_pix(7)) - ("0000" & signed(pixin)) - 2*signed(tmp_pix(2)) - signed(tmp_pix(5)));  
+		sobelY <= (signed(tmp_pix(7)) + 2*signed(tmp_pix(6)) + signed(tmp_pix(5)) - signed(tmp_pix(1)) - 2*signed(tmp_pix(0)) - ("0000" & signed(pixin)));
+		tmp2 <= abs(sobelX) + abs(sobelY);
+		if (tmp2 > 4095) then
+			tmp <= "111111111111";
 		else
-			tmp2 <= abs(tmp3);
+			tmp <= std_logic_vector(tmp2)(11 downto 0);
 		end if;
-		tmp <= std_logic_vector(tmp2(11 downto 0));
 	else
 		tmp <= pixin;
 	end if ; 

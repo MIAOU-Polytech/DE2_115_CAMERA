@@ -1,5 +1,5 @@
 Flow report for DE2_115_CAMERA
-Wed Jul 19 19:59:57 2017
+Thu Jul 20 17:06:33 2017
 Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
@@ -41,20 +41,20 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Wed Jul 19 19:59:49 2017       ;
+; Flow Status                        ; Successful - Thu Jul 20 17:06:24 2017       ;
 ; Quartus Prime Version              ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; DE2_115_CAMERA                              ;
 ; Top-level Entity Name              ; DE2_115_CAMERA                              ;
 ; Family                             ; Cyclone IV E                                ;
 ; Device                             ; EP4CE115F29C7                               ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 3,033 / 114,480 ( 3 % )                     ;
-;     Total combinational functions  ; 2,745 / 114,480 ( 2 % )                     ;
-;     Dedicated logic registers      ; 1,355 / 114,480 ( 1 % )                     ;
-; Total registers                    ; 1355                                        ;
+; Total logic elements               ; 3,347 / 114,480 ( 3 % )                     ;
+;     Total combinational functions  ; 3,034 / 114,480 ( 3 % )                     ;
+;     Dedicated logic registers      ; 1,421 / 114,480 ( 1 % )                     ;
+; Total registers                    ; 1421                                        ;
 ; Total pins                         ; 428 / 529 ( 81 % )                          ;
 ; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 114,712 / 3,981,312 ( 3 % )                 ;
+; Total memory bits                  ; 133,840 / 3,981,312 ( 3 % )                 ;
 ; Embedded Multiplier 9-bit elements ; 0 / 532 ( 0 % )                             ;
 ; Total PLLs                         ; 1 / 4 ( 25 % )                              ;
 +------------------------------------+---------------------------------------------+
@@ -65,7 +65,7 @@ agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 07/19/2017 19:57:58 ;
+; Start date & time ; 07/20/2017 17:04:39 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; DE2_115_CAMERA      ;
 +-------------------+---------------------+
@@ -76,11 +76,12 @@ agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 88491860744789.150048707821533         ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 238368710995885.150056307913236        ; --            ; --          ; --         ;
 ; ENABLE_SIGNALTAP                    ; Off                                    ; --            ; --          ; --         ;
 ; MISC_FILE                           ; v/sdram_pll.bsf                        ; --            ; --          ; --         ;
 ; MISC_FILE                           ; v/sdram_pll.ppf                        ; --            ; --          ; --         ;
 ; MISC_FILE                           ; v/Line_Buffer1.bsf                     ; --            ; --          ; --         ;
+; NUM_PARALLEL_PROCESSORS             ; 8                                      ; --            ; --          ; --         ;
 ; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
 ; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
 ; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
@@ -93,24 +94,24 @@ agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:01:05     ; 1.0                     ; 1325 MB             ; 00:01:21                           ;
-; Fitter                    ; 00:00:40     ; 1.0                     ; 1393 MB             ; 00:00:54                           ;
-; Assembler                 ; 00:00:04     ; 1.0                     ; 840 MB              ; 00:00:04                           ;
-; TimeQuest Timing Analyzer ; 00:00:08     ; 1.4                     ; 951 MB              ; 00:00:08                           ;
-; Total                     ; 00:01:57     ; --                      ; --                  ; 00:02:27                           ;
+; Analysis & Synthesis      ; 00:01:01     ; 1.0                     ; 1397 MB             ; 00:01:14                           ;
+; Fitter                    ; 00:00:38     ; 1.2                     ; 1559 MB             ; 00:01:15                           ;
+; Assembler                 ; 00:00:03     ; 1.0                     ; 855 MB              ; 00:00:03                           ;
+; TimeQuest Timing Analyzer ; 00:00:08     ; 2.4                     ; 1042 MB             ; 00:00:10                           ;
+; Total                     ; 00:01:50     ; --                      ; --                  ; 00:02:42                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
-+-----------------------------------------------------------------------------------------+
-; Flow OS Summary                                                                         ;
-+---------------------------+------------------+------------+------------+----------------+
-; Module Name               ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
-+---------------------------+------------------+------------+------------+----------------+
-; Analysis & Synthesis      ; Elena            ; Arch Linux ; Arch Linux ; x86_64         ;
-; Fitter                    ; Elena            ; Arch Linux ; Arch Linux ; x86_64         ;
-; Assembler                 ; Elena            ; Arch Linux ; Arch Linux ; x86_64         ;
-; TimeQuest Timing Analyzer ; Elena            ; Arch Linux ; Arch Linux ; x86_64         ;
-+---------------------------+------------------+------------+------------+----------------+
++-------------------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                                 ;
++---------------------------+------------------+----------------+----------------+----------------+
+; Module Name               ; Machine Hostname ; OS Name        ; OS Version     ; Processor type ;
++---------------------------+------------------+----------------+----------------+----------------+
+; Analysis & Synthesis      ; Chtolly          ; Antergos Linux ; Antergos Linux ; x86_64         ;
+; Fitter                    ; Chtolly          ; Antergos Linux ; Antergos Linux ; x86_64         ;
+; Assembler                 ; Chtolly          ; Antergos Linux ; Antergos Linux ; x86_64         ;
+; TimeQuest Timing Analyzer ; Chtolly          ; Antergos Linux ; Antergos Linux ; x86_64         ;
++---------------------------+------------------+----------------+----------------+----------------+
 
 
 ------------

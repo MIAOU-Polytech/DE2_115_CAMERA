@@ -462,6 +462,12 @@ wire	[11:0]	sCCD_GaussianFilter;
 wire	[11:0]	sCCD_MedianFilter;
 wire	[11:0]	sCCD_SharpeningFilter;
 wire	[11:0]	sCCD_Sobel;
+
+wire	[11:0]	sCCD_SRed;
+wire	[11:0]	sCCD_SGreen;
+wire	[11:0]	sCCD_SBlue;
+
+
 wire			sCCD_DVAL;
 
 wire			sdram_ctrl_clk;
@@ -574,7 +580,7 @@ Sdram_Control	u7	(	//	HOST Side
 							.CLK(sdram_ctrl_clk),
 
 							//	FIFO Write Side 1
-							.WR1_DATA({1'b0,sCCD_Sobel[11:7],sCCD_Sobel[11:2]}),
+							.WR1_DATA({1'b0,sCCD_SGreen[11:7],sCCD_SRed[11:2]}),
 							.WR1(sCCD_DVAL),
 							.WR1_ADDR(0),
 `ifdef VGA_640x480p60
@@ -588,7 +594,7 @@ Sdram_Control	u7	(	//	HOST Side
 							.WR1_CLK(D5M_PIXLCLK),
 
 							//	FIFO Write Side 2
-							.WR2_DATA({1'b0,sCCD_Sobel[6:2],sCCD_Sobel[11:2]}),
+							.WR2_DATA({1'b0,sCCD_SGreen[6:2],sCCD_SBlue[11:2]}),
 							.WR2(sCCD_DVAL),
 							.WR2_ADDR(23'h100000),
 `ifdef VGA_640x480p60
@@ -680,7 +686,7 @@ RGB2GS			u9	(
 GaussianFilter		u10 (
 							.clk(D5M_PIXLCLK),
 							.reset(DLY_RST_1),
-							.enable(1),
+							.enable(SW[2]),
 							.pixvalid(sCCD_DVAL),
 							.pixin(sCCD_GS),
 							.pixout(sCCD_GaussianFilter)
@@ -688,7 +694,7 @@ GaussianFilter		u10 (
 MedianFilter		u11 (
 							.clk(D5M_PIXLCLK),
 							.reset(DLY_RST_1),
-							.enable(1),
+							.enable(SW[3]),
 							.pixvalid(sCCD_DVAL),
 							.pixin(sCCD_GaussianFilter),
 							.pixout(sCCD_MedianFilter)
@@ -696,7 +702,7 @@ MedianFilter		u11 (
 SharpeningFilter	u12 (
 							.clk(D5M_PIXLCLK),
 							.reset(DLY_RST_1),
-							.enable(0),
+							.enable(SW[4]),
 							.pixvalid(sCCD_DVAL),
 							.pixin(sCCD_MedianFilter),
 							.pixout(sCCD_SharpeningFilter)
@@ -704,10 +710,23 @@ SharpeningFilter	u12 (
 SobelFilter			u13 (
 							.clk(D5M_PIXLCLK),
 							.reset(DLY_RST_1),
-							.enable(1),
+							.enable(SW[5]),
 							.pixvalid(sCCD_DVAL),
 							.pixin(sCCD_SharpeningFilter),
 							.pixout(sCCD_Sobel)
+						);
+TargetGen			u14 (
+							.clk(D5M_PIXLCLK),
+							.reset(DLY_RST_1),
+							.enable(1),
+							.switches(SW),
+							.pixvalid(sCCD_DVAL),
+							.pixin(sCCD_Sobel),
+							.oRed(sCCD_SRed),
+							.oGreen(sCCD_SGreen),
+							.oBlue(sCCD_SBlue),
+							.iX_Cont(X_Cont),
+							.iY_Cont(Y_Cont)
 						);
 
 endmodule

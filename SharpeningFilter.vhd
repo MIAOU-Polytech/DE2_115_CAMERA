@@ -36,8 +36,8 @@ ARCHITECTURE Behavior OF SharpeningFilter IS
 begin
 
 
-ligne1:line_buf port map (clk, reset, enable, pixvalid, tmp_pix(1), tmp_pix(2)) ; 
-ligne2:line_buf port map (clk, reset, enable, pixvalid, tmp_pix(4), tmp_pix(5)) ; 
+ligne1:line_buf port map (clk, reset, '1', pixvalid, tmp_pix(1), tmp_pix(2)) ; 
+ligne2:line_buf port map (clk, reset, '1', pixvalid, tmp_pix(4), tmp_pix(5)) ; 
 
 
 process (clk, reset, pixvalid) begin
@@ -56,13 +56,13 @@ end process ;
 process (clk, enable, pixvalid) begin 
 	if (enable = '1' and pixvalid = '1') then
 		-- gaussian filtre
-		tmp3 <= (signed(tmp_pix(7)) - 2*signed(tmp_pix(6)) + signed(tmp_pix(5)) - 2*signed(tmp_pix(4)) + 5*signed(tmp_pix(3)) - 2*signed(tmp_pix(2)) + signed(tmp_pix(1)) - 2*signed(tmp_pix(0)) + ("0000" & signed(pixin))) / 9;
-		if (tmp3 > 4095 or tmp3 < -4095) then
-			tmp2 <= to_signed(4095, 32);
+		tmp3 <= ( - signed(tmp_pix(6)) - signed(tmp_pix(4)) + 5*signed(tmp_pix(3)) - signed(tmp_pix(2)) - signed(tmp_pix(0)));
+		tmp2 <= abs(tmp3);
+		if (tmp2 > 4095) then
+			tmp <= "111111111111";
 		else
-			tmp2 <= abs(tmp3);
+			tmp <= std_logic_vector(tmp2)(11 downto 0);
 		end if;
-		tmp <= std_logic_vector(tmp2(11 downto 0));
 	else
 		tmp <= pixin;
 	end if ; 

@@ -35,8 +35,8 @@ ARCHITECTURE Behavior OF GaussianFilter IS
 begin
 
 
-ligne1:line_buf port map (clk, reset, enable, pixvalid, tmp_pix(1), tmp_pix(2)) ; 
-ligne2:line_buf port map (clk, reset, enable, pixvalid, tmp_pix(4), tmp_pix(5)) ; 
+ligne1:line_buf port map (clk, reset, '1', pixvalid, tmp_pix(1), tmp_pix(2)) ; 
+ligne2:line_buf port map (clk, reset, '1', pixvalid, tmp_pix(4), tmp_pix(5)) ; 
 
 
 process (clk, reset, pixvalid) begin
@@ -56,7 +56,11 @@ process (clk, enable, pixvalid) begin
 	if (enable = '1' and pixvalid = '1') then
 		-- gaussian filtre
 		tmp2 <= (signed(tmp_pix(7)) + 2*signed(tmp_pix(6)) + signed(tmp_pix(5)) + 2*signed(tmp_pix(4)) + 4*signed(tmp_pix(3)) + 2*signed(tmp_pix(2)) + signed(tmp_pix(1)) + 2*signed(tmp_pix(0)) + ("0000" & signed(pixin))) / 16;
-		tmp <= std_logic_vector(tmp2(11 downto 0));
+		if (tmp2 > 4095) then
+			tmp <= "111111111111";
+		else
+			tmp <= std_logic_vector(tmp2)(11 downto 0);
+		end if;
 	else
 		tmp <= pixin;
 	end if ; 
