@@ -462,6 +462,7 @@ wire	[11:0]	sCCD_GaussianFilter;
 wire	[11:0]	sCCD_MedianFilter;
 wire	[11:0]	sCCD_SharpeningFilter;
 wire	[11:0]	sCCD_Sobel;
+wire	[11:0]	sCCD_Downsampled;
 
 wire	[11:0]	sCCD_SRed;
 wire	[11:0]	sCCD_SGreen;
@@ -715,13 +716,23 @@ SobelFilter			u13 (
 							.pixin(sCCD_SharpeningFilter),
 							.pixout(sCCD_Sobel)
 						);
-TargetGen			u14 (
+DownsamplingFilter u14 (
+							.clk(D5M_PIXLCLK),
+							.reset(DLY_RST_1),
+							.enable(SW[6]),
+							.pixvalid(sCCD_DVAL),
+							.pixin(sCCD_Sobel),
+							.pixout(sCCD_Downsampled),
+							.iX_Cont(X_Cont),
+							.iY_Cont(Y_Cont)
+						);
+TargetGen			u15 (
 							.clk(D5M_PIXLCLK),
 							.reset(DLY_RST_1),
 							.enable(1),
 							.switches(SW),
 							.pixvalid(sCCD_DVAL),
-							.pixin(sCCD_Sobel),
+							.pixin(sCCD_Downsampled),
 							.oRed(sCCD_SRed),
 							.oGreen(sCCD_SGreen),
 							.oBlue(sCCD_SBlue),
