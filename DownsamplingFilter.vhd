@@ -16,7 +16,9 @@ end DownsamplingFilter ;
 
 ARCHITECTURE Behavior OF DownsamplingFilter IS
 	constant SIZE : integer := 28;
-	constant DOWNSAMPLE_FACTOR : integer := 4;
+	constant DOWNSAMPLE_FACTOR : integer := 4; -- tmp_pix needs to be adjusted, linear filter too
+	constant OFFSETX : integer := 200;
+	constant OFFSETY : integer := 200;
 
 
 --	TYPE tab_ligne is array( 0 to 397 ) of STD_LOGIC_VECTOR(11 DOWNTO 0);
@@ -76,10 +78,10 @@ process (clk, enable, pixvalid) begin
 		
 		
 		if (enable = '1') then
-			if (CoordX >= 200 and CoordY >= 200 and CoordX < ((DOWNSAMPLE_FACTOR +1)*SIZE + 200) and CoordY < ((DOWNSAMPLE_FACTOR +1)*SIZE + 200)) then 
-				if (CoordX < (DOWNSAMPLE_FACTOR*SIZE + 200) and CoordY < (DOWNSAMPLE_FACTOR*SIZE + 200)) then
-					if (((CoordX - 200) mod DOWNSAMPLE_FACTOR) = 1 and ((CoordY - 200) mod DOWNSAMPLE_FACTOR) = 1) then
-						arrayoffset <= to_integer((CoordX - 201) / 4 + SIZE*(CoordY - 201) / 4) ;
+			if (CoordX >= OFFSETX and CoordY >= OFFSETY and CoordX < ((DOWNSAMPLE_FACTOR +1)*SIZE + OFFSETX) and CoordY < ((DOWNSAMPLE_FACTOR +1)*SIZE + OFFSETY)) then 
+				if (CoordX < (DOWNSAMPLE_FACTOR*SIZE + OFFSETX) and CoordY < (DOWNSAMPLE_FACTOR*SIZE + OFFSETY)) then
+					if (((CoordX - OFFSETX) mod DOWNSAMPLE_FACTOR) = 1 and ((CoordY - OFFSETY) mod DOWNSAMPLE_FACTOR) = 1) then
+						arrayoffset <= to_integer((CoordX - OFFSETX -1) / 4 + SIZE*(CoordY - OFFSETY -1) / 4) ;
 						
 						-- mean filtre
 						tmp2 <= (signed(tmp_pix(14)) + signed(tmp_pix(13)) + signed(tmp_pix(12)) + signed(tmp_pix(11)) + signed(tmp_pix(10)) + signed(tmp_pix(9)) + signed(tmp_pix(8)) + signed(tmp_pix(7)) + signed(tmp_pix(6)) + signed(tmp_pix(5)) + signed(tmp_pix(4)) + signed(tmp_pix(3)) + signed(tmp_pix(2)) + signed(tmp_pix(1)) + signed(tmp_pix(0)) + signed("0000" & unsigned(pixin))) / 9;
@@ -88,8 +90,8 @@ process (clk, enable, pixvalid) begin
 					else
 						tmp <= "110000000000";
 					end if;
-				elsif (CoordX >= (DOWNSAMPLE_FACTOR*SIZE + 200) and CoordY >= (DOWNSAMPLE_FACTOR*SIZE + 200)) then
-					arrayoffset <= to_integer((CoordX - 200 - DOWNSAMPLE_FACTOR*SIZE) + SIZE*(CoordY - 200 - DOWNSAMPLE_FACTOR*SIZE)) ;
+				elsif (CoordX >= (DOWNSAMPLE_FACTOR*SIZE + OFFSETX) and CoordY >= (DOWNSAMPLE_FACTOR*SIZE + OFFSETY)) then
+					arrayoffset <= to_integer((CoordX - OFFSETX - DOWNSAMPLE_FACTOR*SIZE) + SIZE*(CoordY - OFFSETY - DOWNSAMPLE_FACTOR*SIZE)) ;
 					tmp <= tmp_samples(arrayoffset);
 				end if;
 			end if;
