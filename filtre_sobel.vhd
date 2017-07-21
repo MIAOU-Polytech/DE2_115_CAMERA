@@ -59,8 +59,8 @@ end process ;
 process (clk, enable, pixvalid) begin 
 	if (enable = '1' and pixvalid = '1') then
 		-- sobel filtre
-		sobelX <= (signed(tmp_pix(1)) + 2*signed(tmp_pix(4)) + signed(tmp_pix(7)) - ("0000" & signed(pixin)) - 2*signed(tmp_pix(2)) - signed(tmp_pix(5)));  
-		sobelY <= (signed(tmp_pix(7)) + 2*signed(tmp_pix(6)) + signed(tmp_pix(5)) - signed(tmp_pix(1)) - 2*signed(tmp_pix(0)) - ("0000" & signed(pixin)));
+		sobelX <= (signed(tmp_pix(1)) + 2*signed(tmp_pix(4)) + signed(tmp_pix(7)) - signed("0000" & unsigned(pixin)) - 2*signed(tmp_pix(2)) - signed(tmp_pix(5)));  
+		sobelY <= (signed(tmp_pix(7)) + 2*signed(tmp_pix(6)) + signed(tmp_pix(5)) - signed(tmp_pix(1)) - 2*signed(tmp_pix(0)) - signed("0000" & unsigned(pixin)));
 		tmp2 <= abs(sobelX) + abs(sobelY);
 		if (tmp2 > 4095) then
 			tmp <= "111111111111";
