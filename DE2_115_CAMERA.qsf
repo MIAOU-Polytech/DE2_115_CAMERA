@@ -1044,4 +1044,5 @@ set_global_assignment -name NUM_PARALLEL_PROCESSORS 8
 
 
 set_global_assignment -name VHDL_FILE TargetGen.vhd
+set_global_assignment -name VHDL_FILE DownsamplingFilter.vhd
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

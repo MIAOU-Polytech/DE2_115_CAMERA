@@ -719,7 +719,7 @@ SobelFilter			u13 (
 DownsamplingFilter u14 (
 							.clk(D5M_PIXLCLK),
 							.reset(DLY_RST_1),
-							.enable(SW[6]),
+							.enable(SW[7]),
 							.pixvalid(sCCD_DVAL),
 							.pixin(sCCD_Sobel),
 							.pixout(sCCD_Downsampled),
