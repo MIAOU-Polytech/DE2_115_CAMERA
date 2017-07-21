@@ -24,7 +24,9 @@ ARCHITECTURE Behavior OF TargetGen IS
 	
 	signal CoordX : unsigned(10 DOWNTO 0);
 	signal CoordY : unsigned(10 DOWNTO 0);
-	constant SIZE : unsigned := to_unsigned(29, 5);
+	constant SIZE : unsigned := to_unsigned(28, 8);
+	constant OFFSET : unsigned := to_unsigned(5, 8);
+	constant THICKNESS : unsigned := to_unsigned(2, 8);
 	
 begin
 
@@ -36,7 +38,12 @@ CoordY <= unsigned(iY_Cont);
 process (clk, enable, pixvalid) begin 
 	if (rising_edge(clk)) then
 		if (enable = '1' and pixvalid = '1' and switches(6) = '1') then
-			if (CoordX < (4*SIZE + 200) and CoordX > 200 and CoordY < (4*SIZE + 200) and CoordY > 200) then
+			if (
+					-- Vertical borders  
+			      (((CoordX > OFFSET and CoordX < (OFFSET + THICKNESS)) or (CoordX < (4*SIZE + OFFSET) and CoordX > (4*SIZE + (OFFSET - THICKNESS)))) and CoordY < (4*SIZE + OFFSET) and CoordY > OFFSET)
+			  or  -- Horizontal borders
+					(((CoordY > OFFSET and CoordY < (OFFSET + THICKNESS)) or (CoordY < (4*SIZE + OFFSET) and CoordY > (4*SIZE + (OFFSET - THICKNESS)))) and CoordX < (4*SIZE + OFFSET) and CoordX > OFFSET)
+			) then
 				oRed <= "111111111111";
 				oGreen <= "000000000000";
 				oBlue <= "000000000000";
