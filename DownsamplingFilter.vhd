@@ -72,21 +72,32 @@ end process ;
 
 process (clk, enable, pixvalid) begin 
 	if (enable = '1' and pixvalid = '1') then
-		if (CoordX < (3*SIZE + 200) and CoordX > 200 and CoordY < (3*SIZE + 200) and CoordY > 200) then
-			if (((CoordX - 1) / 3) * 3 = (CoordX - 1) and ((CoordY - 1) / 3) * 3 = (CoordY -1 )) then
-				-- mean filtre
-				tmp2 <= (signed(tmp_pix(7)) + signed(tmp_pix(6)) + signed(tmp_pix(5)) + signed(tmp_pix(4)) + signed(tmp_pix(3)) + signed(tmp_pix(2)) + signed(tmp_pix(1)) + signed(tmp_pix(0)) + ("000" & signed(pixin))) / 9;
-				tmp_samples(samplen) <= std_logic_vector(tmp2)(11 DOWNTO 0);
-				samplen <= samplen + 1;
+		if (CoordX > 200 and CoordY > 200) then 
+			if (CoordX < (3*SIZE + 200) and CoordY < (3*SIZE + 200)) then
+				--if (((CoordX - 1) / 3) * 3 = (CoordX - 1) and ((CoordY - 1) / 3) * 3 = (CoordY -1 )) then
+				if ((CoordX mod 3) = 1 and (CoordY mod 3) = 1) then
+					-- mean filtre
+					tmp2 <= (signed(tmp_pix(7)) + signed(tmp_pix(6)) + signed(tmp_pix(5)) + signed(tmp_pix(4)) + signed(tmp_pix(3)) + signed(tmp_pix(2)) + signed(tmp_pix(1)) + signed(tmp_pix(0)) + ("000" & signed(pixin))) / 9;
+					tmp_samples(samplen) <= std_logic_vector(tmp2)(11 DOWNTO 0);
+					samplen <= samplen + 1;
+					tmp <= "000000000000";
+				else
+					tmp <= "110000000000";
+				end if;
+			elsif (CoordX < (4*SIZE + 200) and CoordY < (4*SIZE + 200)) then
+				--tmp <= tmp_samples(cnt);
+				cnt <= cnt + 1;
+				samplen <= 0;
+				tmp <= "111111111111";
+			elsif (CoordX > (4*SIZE + 200) and CoordY > (4*SIZE +200)) then
+				tmp <= pixin;
+				cnt <= 0;
+				samplen <= 0;
+			else
+				tmp <= pixin;
 			end if;
-		elsif (CoordX < (4*SIZE + 200) and CoordX > 200 and CoordY < (4*SIZE + 200) and CoordY > 200) then
-			tmp <= tmp_samples(cnt);
-			cnt <= cnt + 1;
-			samplen <= 0;
-		elsif (CoordX > (4*SIZE + 200) and CoordY > (4*SIZE +200)) then
+		else
 			tmp <= pixin;
-			cnt <= 0;
-			samplen <= 0;
 		end if;
 	else
 		tmp <= pixin;
