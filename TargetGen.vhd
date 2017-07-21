@@ -7,7 +7,6 @@ entity TargetGen is
 				reset 	: IN STD_LOGIC;
 				enable 	: IN STD_LOGIC;
 				pixvalid : IN STD_LOGIC;
-				switches : IN STD_LOGIC_VECTOR(17 DOWNTO 0);
 				pixin 	: IN STD_LOGIC_VECTOR(11 DOWNTO 0);
 				iX_Cont  : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
 				iY_Cont  : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
@@ -24,9 +23,9 @@ ARCHITECTURE Behavior OF TargetGen IS
 	
 	signal CoordX : unsigned(10 DOWNTO 0);
 	signal CoordY : unsigned(10 DOWNTO 0);
-	constant SIZE : unsigned := to_unsigned(28, 8);
-	constant OFFSET : unsigned := to_unsigned(5, 8);
-	constant THICKNESS : unsigned := to_unsigned(2, 8);
+	constant SIZE : integer := 28;
+	constant OFFSET : integer := 200;
+	constant THICKNESS : integer := 2;
 	
 begin
 
@@ -37,7 +36,7 @@ CoordY <= unsigned(iY_Cont);
 
 process (clk, enable, pixvalid) begin 
 	if (rising_edge(clk)) then
-		if (enable = '1' and pixvalid = '1' and switches(6) = '1') then
+		if (enable = '1' and pixvalid = '1') then
 			if (
 					-- Vertical borders  
 			      (((CoordX > OFFSET and CoordX < (OFFSET + THICKNESS)) or (CoordX < (4*SIZE + OFFSET) and CoordX > (4*SIZE + (OFFSET - THICKNESS)))) and CoordY < (4*SIZE + OFFSET) and CoordY > OFFSET)

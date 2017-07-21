@@ -1,6 +1,6 @@
 Flow report for DE2_115_CAMERA
-Fri Jul 21 11:20:31 2017
-Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+Fri Jul 21 17:49:41 2017
+Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
 ---------------------
@@ -21,42 +21,43 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 1991-2013 Altera Corporation
-Your use of Altera Corporation's design tools, logic functions 
+Copyright (C) 2017  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
 and other software and tools, and its AMPP partner logic 
 functions, and any output files from any of the foregoing 
 (including device programming or simulation files), and any 
 associated documentation or information are expressly subject 
-to the terms and conditions of the Altera Program License 
-Subscription Agreement, Altera MegaCore Function License 
-Agreement, or other applicable license agreement, including, 
-without limitation, that your use is for the sole purpose of 
-programming logic devices manufactured by Altera and sold by 
-Altera or its authorized distributors.  Please refer to the 
-applicable agreement for further details.
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Intel and sold by Intel or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
 
 
 
-+--------------------------------------------------------------------------------------+
-; Flow Summary                                                                         ;
-+------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Successful - Fri Jul 21 11:20:16 2017           ;
-; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
-; Revision Name                      ; DE2_115_CAMERA                                  ;
-; Top-level Entity Name              ; DE2_115_CAMERA                                  ;
-; Family                             ; Cyclone IV E                                    ;
-; Device                             ; EP4CE115F29C7                                   ;
-; Timing Models                      ; Final                                           ;
-; Total logic elements               ; 3,433 / 114,480 ( 3 % )                         ;
-;     Total combinational functions  ; 3,028 / 114,480 ( 3 % )                         ;
-;     Dedicated logic registers      ; 1,421 / 114,480 ( 1 % )                         ;
-; Total registers                    ; 1421                                            ;
-; Total pins                         ; 428 / 529 ( 81 % )                              ;
-; Total virtual pins                 ; 0                                               ;
-; Total memory bits                  ; 133,840 / 3,981,312 ( 3 % )                     ;
-; Embedded Multiplier 9-bit elements ; 0 / 532 ( 0 % )                                 ;
-; Total PLLs                         ; 1 / 4 ( 25 % )                                  ;
-+------------------------------------+-------------------------------------------------+
++----------------------------------------------------------------------------------+
+; Flow Summary                                                                     ;
++------------------------------------+---------------------------------------------+
+; Flow Status                        ; Successful - Fri Jul 21 17:49:20 2017       ;
+; Quartus Prime Version              ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
+; Revision Name                      ; DE2_115_CAMERA                              ;
+; Top-level Entity Name              ; DE2_115_CAMERA                              ;
+; Family                             ; Cyclone IV E                                ;
+; Device                             ; EP4CE115F29C7                               ;
+; Timing Models                      ; Final                                       ;
+; Total logic elements               ; 4,081 / 114,480 ( 4 % )                     ;
+;     Total combinational functions  ; 3,697 / 114,480 ( 3 % )                     ;
+;     Dedicated logic registers      ; 1,646 / 114,480 ( 1 % )                     ;
+; Total registers                    ; 1646                                        ;
+; Total pins                         ; 428 / 529 ( 81 % )                          ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 170,336 / 3,981,312 ( 4 % )                 ;
+; Embedded Multiplier 9-bit elements ; 0 / 532 ( 0 % )                             ;
+; Total PLLs                         ; 1 / 4 ( 25 % )                              ;
++------------------------------------+---------------------------------------------+
 
 
 +-----------------------------------------+
@@ -64,32 +65,28 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 07/21/2017 11:18:17 ;
+; Start date & time ; 07/21/2017 17:46:56 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; DE2_115_CAMERA      ;
 +-------------------+---------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                            ;
-+-------------------------------------+----------------------------+---------------+-------------+------------+
-; Assignment Name                     ; Value                      ; Default Value ; Entity Name ; Section Id ;
-+-------------------------------------+----------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 0.150062869602598          ; --            ; --          ; --         ;
-; ENABLE_SIGNALTAP                    ; Off                        ; --            ; --          ; --         ;
-; IP_TOOL_NAME                        ; ALTPLL                     ; --            ; --          ; --         ;
-; IP_TOOL_NAME                        ; Shift register (RAM-based) ; --            ; --          ; --         ;
-; IP_TOOL_VERSION                     ; 16.0                       ; --            ; --          ; --         ;
-; IP_TOOL_VERSION                     ; 16.0                       ; --            ; --          ; --         ;
-; MISC_FILE                           ; v/sdram_pll.bsf            ; --            ; --          ; --         ;
-; MISC_FILE                           ; v/sdram_pll.ppf            ; --            ; --          ; --         ;
-; MISC_FILE                           ; v/Line_Buffer1.bsf         ; --            ; --          ; --         ;
-; NUM_PARALLEL_PROCESSORS             ; 8                          ; --            ; --          ; --         ;
-; PARTITION_COLOR                     ; 16764057                   ; --            ; --          ; Top        ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; PLACEMENT_AND_ROUTING      ; --            ; --          ; Top        ;
-; PARTITION_NETLIST_TYPE              ; SOURCE                     ; --            ; --          ; Top        ;
-; USE_SIGNALTAP_FILE                  ; stp1.stp                   ; --            ; --          ; --         ;
-+-------------------------------------+----------------------------+---------------+-------------+------------+
++-------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                        ;
++-------------------------------------+----------------------------------------+---------------+-------------+------------+
+; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
++-------------------------------------+----------------------------------------+---------------+-------------+------------+
+; COMPILER_SIGNATURE_ID               ; 238368710995885.150065201604603        ; --            ; --          ; --         ;
+; ENABLE_SIGNALTAP                    ; Off                                    ; --            ; --          ; --         ;
+; MISC_FILE                           ; v/sdram_pll.bsf                        ; --            ; --          ; --         ;
+; MISC_FILE                           ; v/sdram_pll.ppf                        ; --            ; --          ; --         ;
+; MISC_FILE                           ; v/Line_Buffer1.bsf                     ; --            ; --          ; --         ;
+; NUM_PARALLEL_PROCESSORS             ; 8                                      ; --            ; --          ; --         ;
+; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
+; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
+; USE_SIGNALTAP_FILE                  ; stp1.stp                               ; --            ; --          ; --         ;
++-------------------------------------+----------------------------------------+---------------+-------------+------------+
 
 
 +-------------------------------------------------------------------------------------------------------------------------------+
@@ -97,24 +94,24 @@ applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:47     ; 1.0                     ; 1046 MB             ; 00:00:47                           ;
-; Fitter                    ; 00:00:59     ; 1.0                     ; 983 MB              ; 00:00:59                           ;
-; Assembler                 ; 00:00:06     ; 1.0                     ; 577 MB              ; 00:00:06                           ;
-; TimeQuest Timing Analyzer ; 00:00:13     ; 1.0                     ; 703 MB              ; 00:00:13                           ;
-; Total                     ; 00:02:05     ; --                      ; --                  ; 00:02:05                           ;
+; Analysis & Synthesis      ; 00:01:33     ; 1.0                     ; 1502 MB             ; 00:01:49                           ;
+; Fitter                    ; 00:00:44     ; 1.2                     ; 1568 MB             ; 00:01:30                           ;
+; Assembler                 ; 00:00:03     ; 1.0                     ; 858 MB              ; 00:00:04                           ;
+; TimeQuest Timing Analyzer ; 00:00:20     ; 3.3                     ; 1064 MB             ; 00:00:23                           ;
+; Total                     ; 00:02:40     ; --                      ; --                  ; 00:03:46                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
-+-----------------------------------------------------------------------------------------+
-; Flow OS Summary                                                                         ;
-+---------------------------+------------------+------------+------------+----------------+
-; Module Name               ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
-+---------------------------+------------------+------------+------------+----------------+
-; Analysis & Synthesis      ; galarchtop       ; Arch Linux ; Arch Linux ; x86_64         ;
-; Fitter                    ; galarchtop       ; Arch Linux ; Arch Linux ; x86_64         ;
-; Assembler                 ; galarchtop       ; Arch Linux ; Arch Linux ; x86_64         ;
-; TimeQuest Timing Analyzer ; galarchtop       ; Arch Linux ; Arch Linux ; x86_64         ;
-+---------------------------+------------------+------------+------------+----------------+
++-------------------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                                 ;
++---------------------------+------------------+----------------+----------------+----------------+
+; Module Name               ; Machine Hostname ; OS Name        ; OS Version     ; Processor type ;
++---------------------------+------------------+----------------+----------------+----------------+
+; Analysis & Synthesis      ; Chtolly          ; Antergos Linux ; Antergos Linux ; x86_64         ;
+; Fitter                    ; Chtolly          ; Antergos Linux ; Antergos Linux ; x86_64         ;
+; Assembler                 ; Chtolly          ; Antergos Linux ; Antergos Linux ; x86_64         ;
+; TimeQuest Timing Analyzer ; Chtolly          ; Antergos Linux ; Antergos Linux ; x86_64         ;
++---------------------------+------------------+----------------+----------------+----------------+
 
 
 ------------

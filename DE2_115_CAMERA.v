@@ -729,8 +729,7 @@ DownsamplingFilter u14 (
 TargetGen			u15 (
 							.clk(D5M_PIXLCLK),
 							.reset(DLY_RST_1),
-							.enable(1),
-							.switches(SW),
+							.enable(SW[6]),
 							.pixvalid(sCCD_DVAL),
 							.pixin(sCCD_Downsampled),
 							.oRed(sCCD_SRed),
