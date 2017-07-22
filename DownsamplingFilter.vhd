@@ -76,7 +76,7 @@ process (clk, enable, pixvalid) begin
 					arrayoffset <= to_integer((CoordX - OFFSETX -1) / 4 + SIZE*(CoordY - OFFSETY -1) / 4); -- compute extracted pixel number
 					
 					-- linear filter
-					tmp2 <= (signed(tmp_pix(14)) + signed(tmp_pix(13)) + signed(tmp_pix(12)) + signed(tmp_pix(11)) + signed(tmp_pix(10)) + signed(tmp_pix(9)) + signed(tmp_pix(8)) + signed(tmp_pix(7)) + signed(tmp_pix(6)) + signed(tmp_pix(5)) + signed(tmp_pix(4)) + signed(tmp_pix(3)) + signed(tmp_pix(2)) + signed(tmp_pix(1)) + signed(tmp_pix(0)) + signed("0000" & unsigned(pixin))) / 9;
+					tmp2 <= (signed(tmp_pix(14)) + signed(tmp_pix(13)) + signed(tmp_pix(12)) + signed(tmp_pix(11)) + signed(tmp_pix(10)) + signed(tmp_pix(9)) + signed(tmp_pix(8)) + signed(tmp_pix(7)) + signed(tmp_pix(6)) + signed(tmp_pix(5)) + signed(tmp_pix(4)) + signed(tmp_pix(3)) + signed(tmp_pix(2)) + signed(tmp_pix(1)) + signed(tmp_pix(0)) + signed("0000" & unsigned(pixin))) / (DOWNSAMPLE_FACTOR*DOWNSAMPLE_FACTOR);
 					tmp_samples(arrayoffset) <= std_logic_vector(tmp2)(11 DOWNTO 0);
 					tmp <= tmp_samples(arrayoffset);
 				else
